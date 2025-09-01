@@ -2,7 +2,7 @@
 
 - [x] Setup DB
 - [] Seeding of DB (putting Data)
-- [] Introduction to Next.js
+- [] Next.js
 - [] Tailwind & Shadcn
 - [] Git Hooks
 
