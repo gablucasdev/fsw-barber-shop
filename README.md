@@ -1,7 +1,7 @@
 # START
 
 - [x] Setup DB
-- [] Seeding of DB (putting Data)
+- [x] Seeding of DB (putting Data)
 - [] Next.js
 - [] Tailwind & Shadcn
 - [] Git Hooks
