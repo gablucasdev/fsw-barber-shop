@@ -107,11 +107,11 @@ async function seedDatabase() {
       const address = addresses[i];
       const imageUrl = images[i];
 
-      const barbershop = await prisma.barbershop.create({
+      const barbershop = await prisma.barberShop.create({
         data: {
           name,
           address,
-          imageUrl: imageUrl,
+          imageUrl: [imageUrl],
           phones: ["(11) 99999-9999", "(11) 99999-9999"],
           description:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ac augue ullamcorper, pharetra orci mollis, auctor tellus. Phasellus pharetra erat ac libero efficitur tempus. Donec pretium convallis iaculis. Etiam eu felis sollicitudin, cursus mi vitae, iaculis magna. Nam non erat neque. In hac habitasse platea dictumst. Pellentesque molestie accumsan tellus id laoreet.",
@@ -119,12 +119,12 @@ async function seedDatabase() {
       });
 
       for (const service of services) {
-        await prisma.barbershopService.create({
+        await prisma.barberShopService.create({
           data: {
             name: service.name,
             description: service.description,
             price: service.price,
-            barbershop: {
+            barberShop: {
               connect: {
                 id: barbershop.id,
               },
