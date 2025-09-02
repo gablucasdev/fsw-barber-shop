@@ -3,7 +3,7 @@
 - [x] Setup DB
 - [x] Seeding of DB (putting Data)
 - [x] Next.js
-- [x] Tailwind & Shadcn
+- [] Tailwind & Shadcn
 - [] Git Hooks
 
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
