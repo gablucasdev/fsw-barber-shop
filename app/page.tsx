@@ -6,8 +6,16 @@ import Image from "next/image"
 import { Card, CardContent } from "./_components/ui/card"
 import { Badge } from "./_components/ui/badge"
 import { Avatar, AvatarImage } from "./_components/ui/avatar"
+import { db } from "./_lib/prisma"
 
-const Home = () => {
+const Home = async () => {
+  /* CHAMAR O DB */
+  const barbershops = await db.barberShop.findMany({})
+  console.log({barbershops})
+
+
+  /* n to conseguindo puxar os dados do DB */
+  
   return (
     <div>
       <Header />
@@ -31,7 +39,11 @@ const Home = () => {
           />
         </div>
 
-        <Card className="mt-6">
+        <h2 className="mb-3 mt-6 text-xs font-bold uppercase text-gray-400 antialiased">
+          Agendamento
+        </h2>
+
+        <Card>
           <CardContent className="flex justify-between p-0">
             {/* ESQUERDA */}
             <div className="flex flex-col gap-2 py-5 pl-5">
@@ -49,7 +61,7 @@ const Home = () => {
             </div>
 
             {/* DIREITA */}
-            <div className="flex flex-col items-center justify-center px-5 border-l-2 border-solid">
+            <div className="flex flex-col items-center justify-center border-l-2 border-solid px-5">
               <p className="text-sm">Setembro</p>
               <p className="text-2xl">03</p>
               <p className="text-sm">20:30</p>
