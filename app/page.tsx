@@ -7,15 +7,15 @@ import { Card, CardContent } from "./_components/ui/card"
 import { Badge } from "./_components/ui/badge"
 import { Avatar, AvatarImage } from "./_components/ui/avatar"
 import { db } from "./_lib/prisma"
+import BarberShopItem from "./_components/barbershop-item"
 
 const Home = async () => {
   /* CHAMAR O DB */
   const barbershops = await db.barberShop.findMany({})
-  console.log({barbershops})
-
+  console.log({ barbershops })
 
   /* n to conseguindo puxar os dados do DB */
-  
+
   return (
     <div>
       <Header />
@@ -68,6 +68,13 @@ const Home = async () => {
             </div>
           </CardContent>
         </Card>
+
+        <h2 className="mb-3 mt-6 text-xs font-bold uppercase text-gray-400 antialiased">
+          Recomendados
+        </h2>
+        {barbershops.map((barbershop) => (
+          <BarberShopItem key={barbershop.id} barbershop={barbershop} />
+        ))}
       </div>
     </div>
   )
