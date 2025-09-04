@@ -7,7 +7,7 @@
     "build": "next build --turbopack",
     "start": "next start",
     "lint": "eslint",
-    "seed": "ts-node --esm prisma/seed.ts",
+    "seed": "ts-node prisma/seed.ts",
     "prepare": "husky"
   },
   "prisma": {

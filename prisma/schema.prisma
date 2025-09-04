@@ -1,13 +1,12 @@
 generator client {
   provider = "prisma-client-js"
-  output   = "../app/generated/prisma"
 }
 
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
-
+/* oq eu tinha feito de errado? */
 model User {
   id        String    @id @default(uuid())
   email     String
@@ -22,7 +21,7 @@ model BarberShop {
   name        String
   phones      String[]
   description String
-  imageUrl    String[]
+  imageUrl    String
   address     String
   createdAt   DateTime            @default(now())
   updatedAt   DateTime            @updatedAt

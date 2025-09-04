@@ -72,9 +72,11 @@ const Home = async () => {
         <h2 className="mb-3 mt-6 text-xs font-bold uppercase text-gray-400 antialiased">
           Recomendados
         </h2>
-        {barbershops.map((barbershop) => (
-          <BarberShopItem key={barbershop.id} barbershop={barbershop} />
-        ))}
+        <div className="flex gap-4 overflow-auto [&::-webkit-scrollbar]:hidden">
+          {barbershops.map((barbershop) => (
+            <BarberShopItem key={barbershop.id} barbershop={barbershop} />
+          ))}
+        </div>
       </div>
     </div>
   )
