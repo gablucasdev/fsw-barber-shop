@@ -1,6 +1,6 @@
 import { Input } from "./_components/ui/input"
 import Header from "./_components/header"
-import { SearchIcon } from "lucide-react"
+import { EyeClosedIcon, Footprints, SearchIcon } from "lucide-react"
 import { Button } from "./_components/ui/button"
 import Image from "next/image"
 import { Card, CardContent } from "./_components/ui/card"
@@ -39,7 +39,7 @@ const Home = async () => {
         </div>
 
         {/* Busca Rapida */}
-        <div className="flex gap-3 mt-6">
+        <div className="flex gap-3 mt-6 overflow-x-scroll [&::-webkit-scrollbar]:hidden">
           <Button className="gap-2 " variant="secondary">
             <Image src="/cabelo.svg" width={16} height={16} alt={"Cabelo"} />
             Cabelo</Button>
@@ -51,6 +51,16 @@ const Home = async () => {
             <Button className="gap-2 " variant="secondary">
             <Image src="/acabamento.svg" width={16} height={16} alt={"Acabamento"} />
             Acabamento</Button>
+            
+            <Button className="gap-2 " variant="secondary">
+              <Footprints size={16} />
+              Pézinho
+            </Button>
+
+            <Button className="gap-2 " variant="secondary">
+              <EyeClosedIcon size={16}/>
+              Sobrancelha
+            </Button>
         </div>
       
 
