@@ -16,11 +16,14 @@ const BarbershopPage = async ({ params }: BarbershopPageProps) => {
     where: {
       id: params.id,
     },
+    include: {
+        services: true,
+    }
   })
 
-if (!barbershop) {
+  if (!barbershop) {
     return notFound()
-}
+  }
 
   return (
     <div>
@@ -68,8 +71,9 @@ if (!barbershop) {
 
       {/* Descrição */}
       <div className="space-y-3 border-b border-solid p-5">
+        <h2></h2>
         <h2 className="text-xs font-bold uppercase text-gray-400">Sobre Nós</h2>
-        <p className="text-sm text-justify">{barbershop?.description}</p>
+        <p className="text-justify text-sm">{barbershop?.description}</p>
       </div>
     </div>
   )
