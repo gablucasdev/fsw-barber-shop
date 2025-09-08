@@ -1,15 +1,13 @@
 import { Input } from "./_components/ui/input"
 import Header from "./_components/header"
-import { EyeClosedIcon, Footprints, SearchIcon } from "lucide-react"
+import { SearchIcon } from "lucide-react"
 import { Button } from "./_components/ui/button"
 import Image from "next/image"
 import { Card, CardContent } from "./_components/ui/card"
-import { Badge } from "./_components/ui/badge"
-import { Avatar, AvatarImage } from "./_components/ui/avatar"
 import { db } from "./_lib/prisma"
 import BarberShopItem from "./_components/barbershop-item"
-
-
+import { quickSearchOptions } from "./_constants/searchs"
+import BookingItem from "./_components/booking-item"
 
 const Home = async () => {
   /* CHAMAR O DB */
@@ -19,8 +17,6 @@ const Home = async () => {
       name: "desc",
     },
   })
-
-  /* n to conseguindo puxar os dados do DB */
 
   return (
     <div>
@@ -39,30 +35,19 @@ const Home = async () => {
         </div>
 
         {/* Busca Rapida */}
-        <div className="flex gap-3 mt-6 overflow-x-scroll [&::-webkit-scrollbar]:hidden">
-          <Button className="gap-2 " variant="secondary">
-            <Image src="/cabelo.svg" width={16} height={16} alt={"Cabelo"} />
-            Cabelo</Button>
-
-            <Button className="gap-2 " variant="secondary">
-            <Image src="/barba.svg" width={16} height={16} alt={"Barba"} />
-            Barba</Button>
-
-            <Button className="gap-2 " variant="secondary">
-            <Image src="/acabamento.svg" width={16} height={16} alt={"Acabamento"} />
-            Acabamento</Button>
-            
-            <Button className="gap-2 " variant="secondary">
-              <Footprints size={16} />
-              Pézinho
+        <div className="mt-6 flex gap-3 overflow-x-scroll [&::-webkit-scrollbar]:hidden">
+          {quickSearchOptions.map((option) => (
+            <Button className="gap-2" variant="secondary" key={option.title}>
+              <Image
+                src={option.imageUrl}
+                width={16}
+                height={16}
+                alt={option.title}
+              />
+              {option.title}
             </Button>
-
-            <Button className="gap-2 " variant="secondary">
-              <EyeClosedIcon size={16}/>
-              Sobrancelha
-            </Button>
+          ))}
         </div>
-      
 
         {/* Banner */}
         <div className="relative mt-6 h-[150px] w-full">
@@ -74,35 +59,8 @@ const Home = async () => {
           />
         </div>
 
-        <h2 className="mb-3 mt-6 text-xs font-bold uppercase text-gray-400 antialiased">
-          Agendamento
-        </h2>
-
-        <Card>
-          <CardContent className="flex justify-between p-0">
-            {/* ESQUERDA */}
-            <div className="flex flex-col gap-2 py-5 pl-5">
-              <Badge className="w-fit bg-indigo-600 font-bold text-white">
-                Confirmado
-              </Badge>
-              <h3 className="font-semibold">Corte de Cabelo</h3>
-
-              <div className="flex items-center gap-2">
-                <Avatar className="h-6 w-6">
-                  <AvatarImage src="https://utfs.io/f/c97a2dc9-cf62-468b-a851-bfd2bdde775f-16p.png"></AvatarImage>
-                </Avatar>
-                <p className="text-sm">Barbearia FSW</p>
-              </div>
-            </div>
-
-            {/* DIREITA */}
-            <div className="flex flex-col items-center justify-center border-l-2 border-solid px-5">
-              <p className="text-sm">Setembro</p>
-              <p className="text-2xl">03</p>
-              <p className="text-sm">20:30</p>
-            </div>
-          </CardContent>
-        </Card>
+        {/* Agendamento */}
+        <BookingItem />
 
         <h2 className="mb-3 mt-6 text-xs font-bold uppercase text-gray-400 antialiased">
           Recomendados
@@ -124,7 +82,7 @@ const Home = async () => {
       </div>
 
       <footer>
-        <Card>
+        <Card className="flex">
           <CardContent className="px-5 py-6">
             <p className="text-sm text-gray-400">
               © 2025 copyright{" "}
