@@ -85,7 +85,7 @@ const Home = async () => {
         <Card className="flex">
           <CardContent className="px-5 py-6">
             <p className="text-sm text-gray-400">
-              © 2025 copyright{" "}
+              © 2025 copyright 
               <span className="font-bold">FSW Barbershop</span>
             </p>
           </CardContent>
