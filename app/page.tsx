@@ -3,7 +3,6 @@ import Header from "./_components/header"
 import { SearchIcon } from "lucide-react"
 import { Button } from "./_components/ui/button"
 import Image from "next/image"
-import { Card, CardContent } from "./_components/ui/card"
 import { db } from "./_lib/prisma"
 import BarberShopItem from "./_components/barbershop-item"
 import { quickSearchOptions } from "./_constants/searchs"
@@ -80,17 +79,6 @@ const Home = async () => {
           ))}
         </div>
       </div>
-
-      <footer>
-        <Card className="flex">
-          <CardContent className="px-5 py-6">
-            <p className="text-sm text-gray-400">
-              © 2025 copyright 
-              <span className="font-bold">FSW Barbershop</span>
-            </p>
-          </CardContent>
-        </Card>
-      </footer>
     </div>
   )
 }
