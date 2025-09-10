@@ -104,6 +104,6 @@ const BarbershopPage = async ({ params }: BarbershopPageProps) => {
   )
 }
 
-/* pelo visto n */
+
 
 export default BarbershopPage

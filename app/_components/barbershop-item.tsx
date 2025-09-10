@@ -10,12 +10,14 @@ interface BarberShopItemProps {
   barbershop: BarberShop
 }
 
+/* ent eu rpeciso por exemplo pegar isso daqui */
+
 const BarberShopItem = ({ barbershop }: BarberShopItemProps) => {
   return (
     <Card className="min-w-[167px] rounded-2xl">
       <CardContent className="p-0 px-1 pt-1">
         {/* Imagem */}
-        <div className="relative h-[159px] w-full">
+       { <div className="relative h-[159px] w-full">
           <Image
             fill
             className="rounded-2xl object-cover"
@@ -34,7 +36,7 @@ const BarberShopItem = ({ barbershop }: BarberShopItemProps) => {
             <p className="text-xs font-semibold">5,0</p>
           </Badge>
         </div>
-
+}
         {/* Texto */}
         <div className="px-1 py-3">
           <h3 className="truncate font-semibold">{barbershop.name}</h3>

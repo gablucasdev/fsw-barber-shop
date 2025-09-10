@@ -2,7 +2,6 @@ import { Avatar, AvatarImage } from "./ui/avatar";
 import { Badge } from "./ui/badge";
 import { Card, CardContent } from "./ui/card";
 
-// TO DOO: reveber agendamento como prop 
 const bookingItem = () => {
     return ( 
         <>
