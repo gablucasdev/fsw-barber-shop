@@ -22,7 +22,11 @@ const Search = () => {
         value={search}
         onChange={(e) => setSearch(e.target.value)}
       />
-      <Button onClick={handleSubmit} type="submit">
+      <Button
+        className="bg-indigo-600 text-white"
+        onClick={handleSubmit}
+        type="submit"
+      >
         <SearchIcon />
       </Button>
     </form>
