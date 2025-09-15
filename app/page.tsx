@@ -9,13 +9,8 @@ import Search from "./_components/search"
 
 const Home = async () => {
   /* CHAMAR O DB */
-  const barbershops = await db.barberShop.findMany({})
-  const popularBarbershops = await db.barberShop.findMany({
-    orderBy: {
-      name: "desc",
-    },
-  })
-
+  /* const barbershops = await db.Barbershop.findMany()
+  const popularBarbershops = await db.Barbershop.findMany() */
   return (
     <div>
       <Header />
@@ -61,18 +56,40 @@ const Home = async () => {
           Recomendados
         </h2>
         <div className="flex gap-4 overflow-auto [&::-webkit-scrollbar]:hidden">
-          {barbershops.map((barbershop) => (
-            <BarberShopItem key={barbershop.id} barbershop={barbershop} />
-          ))}
+          {/* {barbershops.map(
+            (Barbershop: {
+              id: string
+              name: string
+              phones: string[]
+              description: string
+              imageUrl: string
+              address: string
+              createdAt: Date
+              updatedAt: Date
+            }) => (
+              <BarberShopItem key={Barbershop.id} barbershop={Barbershop} />
+            ),
+          )} */}
         </div>
 
         <h2 className="mb-3 mt-6 text-xs font-bold uppercase text-gray-400 antialiased">
           Populares
         </h2>
         <div className="flex gap-4 overflow-auto [&::-webkit-scrollbar]:hidden">
-          {popularBarbershops.map((barbershop) => (
-            <BarberShopItem key={barbershop.id} barbershop={barbershop} />
-          ))}
+          {/* {popularBarbershops.map(
+            (Barbershop: {
+              name: string
+              id: string
+              address: string
+              phones: string[]
+              description: string
+              imageUrl: string
+              createdAt: Date
+              updatedAt: Date
+            }) => (
+              <BarberShopItem key={Barbershop.id} barbershop={Barbershop} />
+            ),
+          )} */}
         </div>
       </div>
     </div>

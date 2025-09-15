@@ -1,7 +1,7 @@
-import { BarberShopService } from "@prisma/client"
 import Image from "next/image"
 import { Button } from "./ui/button"
 import { Card, CardContent } from "./ui/card"
+import { BarberShopService } from "../generated/prisma"
 
 interface ServiceItemProps {
   service: BarberShopService
@@ -16,7 +16,7 @@ const ServiceItem = ({ service }: ServiceItemProps) => {
           <Image
             src={service.imageUrl}
             fill
-            className="object-cover rounded-lg"
+            className="rounded-lg object-cover"
             alt={service.name}
           />
         </div>

@@ -1,13 +1,13 @@
-import { BarberShop } from "@prisma/client"
 import { Card, CardContent } from "./ui/card"
 import Image from "next/image"
 import { Button } from "./ui/button"
 import { StarIcon } from "lucide-react"
 import { Badge } from "./ui/badge"
 import Link from "next/link"
+import { Barbershop } from "@prisma/client"
 
 interface BarberShopItemProps {
-  barbershop: BarberShop
+  barbershop: Barbershop
 }
 
 /* ent eu rpeciso por exemplo pegar isso daqui */

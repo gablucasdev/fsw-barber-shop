@@ -4,6 +4,8 @@ import "./globals.css"
 import { Toaster } from "sonner"
 import Footer from "./_components/footer"
 import { notFound } from "next/navigation"
+import { SessionProvider } from "next-auth/react"
+import AuthProvider from "./_providers/auth"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,9 +32,11 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
-        <Toaster />
-        {!notFound && <Footer />}
+        <AuthProvider>
+          {children}
+          <Toaster />
+          {!notFound && <Footer />}
+        </AuthProvider>
       </body>
     </html>
   )
