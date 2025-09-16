@@ -14,11 +14,12 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "./ui/dialog"
-import { signIn } from "next-auth/react"
+
+import { signIn, signOut, useSession } from "next-auth/react"
 
 const SidebarSheet = () => {
   const handleLoginWithGoogleClick = () => signIn("google")
-
+  const { data: session } = useSession()
 
   return (
     <SheetContent
@@ -49,7 +50,7 @@ const SidebarSheet = () => {
               </DialogDescription>
             </DialogHeader>
 
-            <Button variant="outline" className="gap-1 font-bold" onClick={handleLoginWithGoogleClick}>
+            <Button variant="outline" className="gap-1 font-bold" onClick={() => signIn("google")}>
               <Image
                 src={"/google.svg"}
                 alt="Fazer login com o Google"
