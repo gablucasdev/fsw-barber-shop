@@ -9,8 +9,8 @@ import Search from "./_components/search"
 
 const Home = async () => {
   /* CHAMAR O DB */
-  /* const barbershops = await db.Barbershop.findMany()
-  const popularBarbershops = await db.Barbershop.findMany() */
+  const barbershops = await db.barbershop.findMany()
+  const popularBarbershops = await db.barbershop.findMany()
   return (
     <div>
       <Header />
@@ -56,7 +56,7 @@ const Home = async () => {
           Recomendados
         </h2>
         <div className="flex gap-4 overflow-auto [&::-webkit-scrollbar]:hidden">
-          {/* {barbershops.map(
+          {barbershops.map(
             (Barbershop: {
               id: string
               name: string
@@ -69,14 +69,14 @@ const Home = async () => {
             }) => (
               <BarberShopItem key={Barbershop.id} barbershop={Barbershop} />
             ),
-          )} */}
+          )}
         </div>
 
         <h2 className="mb-3 mt-6 text-xs font-bold uppercase text-gray-400 antialiased">
           Populares
         </h2>
         <div className="flex gap-4 overflow-auto [&::-webkit-scrollbar]:hidden">
-          {/* {popularBarbershops.map(
+          {popularBarbershops.map(
             (Barbershop: {
               name: string
               id: string
@@ -89,7 +89,7 @@ const Home = async () => {
             }) => (
               <BarberShopItem key={Barbershop.id} barbershop={Barbershop} />
             ),
-          )} */}
+          )}
         </div>
       </div>
     </div>
