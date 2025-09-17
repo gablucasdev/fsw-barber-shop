@@ -5,6 +5,7 @@ import { Button } from "./ui/button"
 import { SearchIcon } from "lucide-react"
 import { useState } from "react"
 import { useRouter } from "next/navigation"
+import BarbershopsPage from "../barbershops/page"
 
 const Search = () => {
   const [search, setSearch] = useState("")
@@ -12,7 +13,7 @@ const Search = () => {
 
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault()
-    router.push(`/barbershop?search=${search}`)
+    router.push(`/barbershops?search=${search}`)
   }
 
   return (
@@ -31,6 +32,7 @@ const Search = () => {
       </Button>
     </form>
   )
+  console.log({ BarbershopsPage })
 }
 
 export default Search
