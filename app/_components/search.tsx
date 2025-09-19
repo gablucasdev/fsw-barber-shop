@@ -43,7 +43,6 @@ const Search = () => {
               <FormMessage />
             </FormItem>
           )}
-          
         />
         <Button type="submit" className="bg-indigo-500">
           <SearchIcon />

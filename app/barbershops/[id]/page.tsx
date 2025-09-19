@@ -1,13 +1,15 @@
-import PhoneItem from "@/app/_components/phone-item"
-import ServicerItem from "@/app/_components/service-item"
-import SidebarSheet from "@/app/_components/sidebar-sheet"
 import { Button } from "@/app/_components/ui/button"
-import { Sheet, SheetTrigger } from "@/app/_components/ui/sheet"
 import { db } from "@/app/_lib/prisma"
 import { ChevronLeftIcon, MapPinIcon, MenuIcon, StarIcon } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
+import ServiceItem from "@/app/_components/service-item"
+import PhoneItem from "@/app/_components/phone-item"
+import { Sheet, SheetTrigger } from "@/app/_components/ui/sheet"
+import SidebarSheet from "@/app/_components/sidebar-sheet"
+
+//TELA DETALHES DA BARBEARIA
 
 interface BarbershopPageProps {
   params: {
@@ -15,7 +17,9 @@ interface BarbershopPageProps {
   }
 }
 
+//Recebe dados da barbearia na URL
 const BarbershopPage = async ({ params }: BarbershopPageProps) => {
+  //Chamar bdd
   const barbershop = await db.barbershop.findUnique({
     where: {
       id: params.id,
@@ -25,6 +29,9 @@ const BarbershopPage = async ({ params }: BarbershopPageProps) => {
     },
   })
 
+  console.log(barbershop?.services)
+
+  //retorna 404 para id inválidos
   if (!barbershop) {
     return notFound()
   }
@@ -34,17 +41,17 @@ const BarbershopPage = async ({ params }: BarbershopPageProps) => {
       {/* Imagem */}
       <div className="relative h-[250px] w-full">
         <Image
-          alt={barbershop?.name}
+          alt={barbershop.name}
           src={barbershop?.imageUrl}
           fill
           className="object-cover"
         />
 
         <Button
-          asChild
           size="icon"
-          variant="outline"
+          variant="secondary"
           className="absolute left-4 top-4"
+          asChild
         >
           <Link href="/">
             <ChevronLeftIcon />
@@ -61,45 +68,49 @@ const BarbershopPage = async ({ params }: BarbershopPageProps) => {
               <MenuIcon />
             </Button>
           </SheetTrigger>
+
           <SidebarSheet />
         </Sheet>
       </div>
 
-      {/* titulo */}
       <div className="border-b border-solid p-5">
         <h1 className="mb-3 text-xl font-bold">{barbershop?.name}</h1>
-        <div className="mb-2 flex items-center gap-2">
-          <MapPinIcon className="fill-secondary text-indigo-600" size={18} />
+
+        <div className="mb-2 flex items-center gap-1">
+          <MapPinIcon className="text-indigo-500" />
           <p className="text-sm">{barbershop?.address}</p>
         </div>
 
-        <div className="flex items-center gap-2">
-          <StarIcon className="fill-secondary text-indigo-600" size={18} />
-          <p className="text-sm">5,0 (472 avaliações)</p>
+        <div className="flex items-center gap-1">
+          <StarIcon className="text-indigo-500" />
+          <p className="text-sm">5,0 (334 avaliações)</p>
         </div>
       </div>
 
       {/* Descrição */}
-      <div className="space-y-3 border-b border-solid p-5">
-        <h2></h2>
-        <h2 className="text-xs font-bold uppercase text-gray-400">Sobre Nós</h2>
+      <div className="solid space-y-2 border border-b p-5">
+        <h2 className="uppercaseb font-bold text-gray-400">Sobre nós</h2>
         <p className="text-justify text-sm">{barbershop?.description}</p>
       </div>
 
-      {/* SERVIÇOS */}
+      {/* Serviços  */}
       <div className="space-y-3 border-b border-solid p-5">
-        <h2 className="text-xs font-bold uppercase text-gray-400">Sobre Nós</h2>
+        <h2 className="text-xs font-bold uppercase text-gray-400">Serviços</h2>
         <div className="space-y-3">
           {barbershop.services.map((service) => (
-            <ServicerItem key={service.id} service={service} />
+            <ServiceItem
+              service={service}
+              key="service.id"
+              barbershop={barbershop}
+            />
           ))}
         </div>
       </div>
 
-      {/* CONTATO */}
-      <div className="space-y-3 p-5">
+      {/* Contato */}
+      <div className="space-y-2 p-5">
         {barbershop.phones.map((phone) => (
-          <PhoneItem key={phone} phone={phone} />
+          <PhoneItem phone={phone} key={phone} />
         ))}
       </div>
     </div>
