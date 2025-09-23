@@ -8,16 +8,17 @@ interface GetBookingProps {
   date: Date
 }
 
-export const getBookings = ({ date }: GetBookingProps) => {
-  return db.booking.findMany({
+export const getBookings = async ({ date, serviceId }: GetBookingProps) => {
+  return await db.booking.findMany({
     where: {
+      serviceId,
       date: {
-        lte: endOfDay(date),
         gte: startOfDay(date),
+        lte: endOfDay(date),
       },
     },
     include: {
-      service: true
-    }
+      service: true, 
+    },
   })
-} // acho q esse codigo ta errado
+}

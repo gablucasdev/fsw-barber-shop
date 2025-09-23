@@ -17,11 +17,14 @@ import { Dialog, DialogContent } from "@radix-ui/react-dialog"
 import { useSession } from "next-auth/react"
 import { useState, useEffect } from "react"
 import { toast } from "sonner"
-import { set } from "zod"
+import { set, ZodSet } from "zod"
 import { ptBR } from "date-fns/locale"
 import { Calendar } from "./ui/calendar"
-import { addDays } from "date-fns"
+import { addDays, format } from "date-fns"
 import { getBookings } from "../actions/get-bookings"
+import { SomeType } from "zod/v4/core"
+import SignInDialog from "./sign-in-dialog"
+import { DialogTitle } from "./ui/dialog"
 
 interface ServiceItemProps {
   service: BarbershopService
@@ -36,7 +39,7 @@ type BookingFrontend = {
   date: Date
   createdAt: Date
   updatedAt: Date
-}
+} 
 
 const TIME_LIST = [
   "08:30",
@@ -147,7 +150,7 @@ const ServiceItem = ({ service, barbershop }: ServiceItemProps) => {
         minutes: minute,
         hours: hour,
       })
-      await createBooking({
+      await createBzooking({
         serviceId: service.id,
         date: newDate,
       })
@@ -236,7 +239,7 @@ const ServiceItem = ({ service, barbershop }: ServiceItemProps) => {
                   </div>
 
                   {selectedDay && (
-                    <div className="scrollbar-hide flex gap-4 overflow-x-auto border-b border-solid p-5">
+                    <div className="scrollbar-hide flex gap-4 overflow-x-auto overflow-y-auto border-b border-solid p-5 [&::-webkit-scrollbar]:hidden">
                       {getTimeList(dayBookings).map((time) => (
                         <Button
                           key={time}
@@ -311,7 +314,8 @@ const ServiceItem = ({ service, barbershop }: ServiceItemProps) => {
         onOpenChange={(open) => setSignInDialogIsOpen(open)}
       >
         <DialogContent className="w-[90]">
-          {/* <SignInDialog /> */}
+          <DialogTitle className="sr-only">teste</DialogTitle>
+          <SignInDialog />
         </DialogContent>
       </Dialog>
     </>
@@ -319,3 +323,6 @@ const ServiceItem = ({ service, barbershop }: ServiceItemProps) => {
 }
 
 export default ServiceItem
+function createBzooking(_arg0: { serviceId: string; date: ZodSet<SomeType> }) {
+  throw new Error("Function not implemented.")
+}

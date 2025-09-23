@@ -1,65 +1,50 @@
-import { getServerSession } from "next-auth";
-import Header from "../_components/header";
-import { db } from "../_lib/prisma";
-import { authOptions } from "../_lib/auth";
-import { notFound } from "next/navigation";
-import BookingItem from "../_components/booking-item";
+// app/_components/booking-item.tsx
+import Image from "next/image"
+import { Prisma } from "@prisma/client"
 
-
-const Booking = async () => {
-    const session = await getServerSession(authOptions)
-    if (!session?.user) {
-        return notFound()
+type BookingWithServiceAndBarbershop = Prisma.BookingGetPayload<{
+  include: {
+    service: {
+      include: {
+        barbershop: true
+      }
     }
-    const confirmedBookings = await db.booking.findMany({
-        where: {
-            userId: (session.user as any).id,
-            date: {
-                gte: new Date(),
-            }
-        },
-        include: {
-            service: {
-                include: {
-                    barbershop: true,
-                },
-            },
-        },
-    })
+  }
+}>
 
-    const concludedBookings = await db.booking.findMany({
-        where: {
-            userId: (session.user as any).id,
-            date: {
-                lt: new Date(),
-            }
-        },
-        include: {
-            service: {
-                include: {
-                    barbershop: true,
-                },
-            },
-        },
-    })
-
-    return ( 
-        <>
-          <Header />
-          <div className="p-5 space-y-3">
-            <h1 className="font-bold text-xl">Agendamentos</h1>
-            <h2 className="uppercase font-bold text-gray-400 text-xs mt-6 mb-3">
-                Confirmados
-            </h2>
-            {confirmedBookings.map(booking => <BookingItem key={booking.id} booking={booking}/>)}
-
-            <h2 className="uppercase font-bold text-gray-400 text-xs mt-6 mb-3">
-                Finalizados
-            </h2>
-            {concludedBookings.map(booking => <BookingItem key={booking.id} booking={booking}/>)}
-          </div>
-        </>
-     );
+interface BookingItemProps {
+  booking: BookingWithServiceAndBarbershop
 }
- 
-export default Booking;
+
+const BookingItem = ({ booking }: BookingItemProps) => {
+  return (
+    <div className="rounded-xl border p-4">
+      <div className="flex items-center gap-4">
+        <Image
+          src={booking.service.imageUrl}
+          alt={booking.service.name}
+          width={80}
+          height={80}
+          className="rounded-lg object-cover"
+        />
+
+        <div className="flex flex-col">
+          <strong>{booking.service.name}</strong>
+          <span className="text-sm text-gray-500">
+            {booking.service.barbershop.name}
+          </span>
+          <span className="text-sm text-gray-500">
+            {booking.date.toLocaleString("pt-BR", {
+              day: "2-digit",
+              month: "long",
+              hour: "2-digit",
+              minute: "2-digit",
+            })}
+          </span>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default BookingItem

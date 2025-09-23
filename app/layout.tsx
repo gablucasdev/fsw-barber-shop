@@ -4,7 +4,6 @@ import "./globals.css"
 import { Toaster } from "sonner"
 import Footer from "./_components/footer"
 import { notFound } from "next/navigation"
-import { SessionProvider } from "next-auth/react"
 import AuthProvider from "./_providers/auth"
 
 const geistSans = Geist({

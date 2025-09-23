@@ -9,17 +9,13 @@ import PhoneItem from "@/app/_components/phone-item"
 import { Sheet, SheetTrigger } from "@/app/_components/ui/sheet"
 import SidebarSheet from "@/app/_components/sidebar-sheet"
 
-//TELA DETALHES DA BARBEARIA
-
 interface BarbershopPageProps {
   params: {
     id: string
   }
 }
 
-//Recebe dados da barbearia na URL
 const BarbershopPage = async ({ params }: BarbershopPageProps) => {
-  //Chamar bdd
   const barbershop = await db.barbershop.findUnique({
     where: {
       id: params.id,
@@ -31,7 +27,6 @@ const BarbershopPage = async ({ params }: BarbershopPageProps) => {
 
   console.log(barbershop?.services)
 
-  //retorna 404 para id inválidos
   if (!barbershop) {
     return notFound()
   }

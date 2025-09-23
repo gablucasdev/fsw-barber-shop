@@ -5,10 +5,11 @@ import { Button } from "./ui/button"
 import { SheetClose, SheetContent, SheetHeader, SheetTitle } from "./ui/sheet"
 import Link from "next/link"
 import Image from "next/image"
-import { Dialog, DialogContent, DialogTrigger } from "./ui/dialog"
+import { Dialog, DialogContent, DialogTitle, DialogTrigger } from "./ui/dialog"
 import { signOut, useSession } from "next-auth/react"
 import { Avatar, AvatarImage } from "./ui/avatar"
 import { quickSearchOptions } from "../_constants/searchs"
+import SignInDialog from "./sign-in-dialog"
 
 const SidebarSheet = () => {
   const { data } = useSession()
@@ -44,7 +45,8 @@ const SidebarSheet = () => {
               </DialogTrigger>
 
               <DialogContent className="w-[90%]">
-                {/* <SignInDialog /> */}
+                  <DialogTitle className="sr-only">teste</DialogTitle>
+                 <SignInDialog />
               </DialogContent>
             </Dialog>
           </>
